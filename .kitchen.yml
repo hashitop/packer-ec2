@@ -1,0 +1,27 @@
+---
+driver:
+  name: ec2
+  aws_ssh_key_id: hashitop
+  region: us-east-2
+  instance_type: t2.micro
+  associate_public_ip: true
+ 
+provisioner:
+  name: chef_solo
+
+transport:
+  ssh_key: /Users/mekatop/hashicorp/ssh/hashitop.pem
+  connection_timeout: 10
+  connection_retries: 5
+  username: ubuntu
+
+platforms:
+  - name: ubuntu-16.04
+    driver:
+      image_id: ami-044ebe3733672d624
+
+verifier:
+  name: inspec
+
+suites:
+  - name: default
